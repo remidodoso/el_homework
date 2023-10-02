@@ -1,0 +1,47 @@
+$ perl food_trek.pl
+Loading CSV at 'http://data.sfgov.org/api/views/rqzj-sfat/rows.csv' ...
+... parsing ...
+... creating database 'truck.sqlite' ...
+... done.
+Now, be patient for a few seconds: Computing bearings and distances ...
+...done.
+
+    Note: There are many caveats about this data, including that some carts are permitted for many, MANY
+    more locations than they occupy. I couldn't find a way to distinguish "active" from "permitted."
+
+    With that caveat, here are some random facts:
+
+    Total of permits: 481
+    Approved permits: 184
+    Approved truck permits: 171
+    Approved cart permits: 13
+    Permits with a (lat, long) location: 179
+
+EXTRA CREDIT:
+What approved truck (or cart) permit has the most approved permits within 250 meters?
+
+The winner:
+  MOMO INNOVATION LLC at 351 CALIFORNIA ST Noodles: Meat & Drinks
+
+And the permits within 250 meters:
+  53 m  261 deg  San Francisco's Hometown Creamery  425 CALIFORNIA ST Ice Cream: Waffle Cones
+  53 m  261 deg  Philz Coffee Truck  401 CALIFORNIA ST Hot coffee: iced coffee: hot chocolate: tea: pastries
+  64 m  176 deg  Philz Coffee Truck  250 PINE ST Hot coffee: iced coffee: hot chocolate: tea: pastries
+  70 m  220 deg  Truly Food & More  217 SANSOME ST Latin Food: Tacos: Pupusas: Vegetables: Salad: Waters: Sodas
+  73 m   28 deg  Roadside Rotisserie Corporation / Country Grill  300 CALIFORNIA ST Rotisserie Chicken; Ribs; Pork Loin; Roasted Potatoes; Chicken Wrap; Kale Salad; Drinks
+  76 m  136 deg  BOWL'D ACAI, LLC.  111 BATTERY ST Acai Bowls: Smoothies: Juices
+ 101 m  295 deg  Think is Good Inc.  430 CALIFORNIA ST Lobster rolls: crab rolls: lobster burritos: crab burritos: chicken burritos: fish burritos: chicken burritos: poke bowls: soups: chips & soda.
+ 101 m  295 deg  Bonito Poke  430 CALIFORNIA ST Bonito Poke Bowls & Various Drinks
+ 124 m  202 deg  San Francisco's Hometown Creamery  301 PINE ST Ice cream & Waffle cones
+ 155 m  247 deg  Plaza Garibaldy  475 CALIFORNIA ST Tacos: burritos: quesadillas
+ 155 m  247 deg  Zuri Food Facilities  475 CALIFORNIA ST Peruvian Food Served Hot
+ 158 m   99 deg  Think is Good Inc.  100 PINE ST Lobster rolls: crab rolls: lobster burritos: crab burritos: chicken burritos: fish burritos: chicken burritos: poke bowls: soups: chips & soda.
+ 162 m  280 deg  Halal Cart of San Francisco  400 MONTGOMERY ST Halal Gyro over Rice: Halal Chicken over Rice: Halal Gyro: and Chicken Sandwich
+ 162 m  280 deg  Halal Cart, LLC  400 MONTGOMERY ST kebabs: halal gyro: grilled halal meat: refreshments
+ 224 m  165 deg  Roadside Rotisserie Corporation / Country Grill  1 BUSH ST Rotisserie Chicken: Ribs: Kickass Salad: Potatos w/fat dripping: chicken wrap.
+ 224 m  165 deg  MOMO INNOVATION LLC  1 BUSH ST Noodles
+ 231 m  289 deg  BOWL'D ACAI, LLC.  451 MONTGOMERY ST Acai Bowls: Smoothies: Juices
+ 232 m   87 deg  MOMO INNOVATION LLC  101 CALIFORNIA ST MOMO Spicy Noodle: POPO's Noodle: Spicy Chicken Noodle: Rice Noodles
+
+Use your favorite SQLite client to play with the database file at 'truck.sqlite'.
+Have fun!
