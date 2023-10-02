@@ -173,7 +173,7 @@ END
 $r = $dbh->selectall_arrayref(q(
     WITH nexus (row_id, n) AS (
         SELECT row_id, count(*) n
-        FROM truck, DIST_BEARING
+        FROM truck, dist_bearing
         WHERE truck.row_id = dist_bearing.id_1
         AND dist_bearing.distance < 250 --meters
         GROUP BY row_id
