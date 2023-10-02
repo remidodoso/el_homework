@@ -1,8 +1,8 @@
 Pre-notes
 
 It looks like Montyhaul main (https://github.com/remidodoso/montyhaul) is working
-somewhat at the moment. If you grab a copy and open main.html with your browser, and
-open main.html, it'll somewhat work. The code might be somewhat interesting.
+somewhat at the moment. If you grab a copy and open main.html with your browser, it'll 
+somewhat work. The code might be somewhat interesting. Somewhat?
 
 NOTES
 
