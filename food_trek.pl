@@ -21,11 +21,11 @@ sub load_csv {
     # Fetch the current version of the SF food truck CSV, read it as a blob, and
     # parse into column names and rows.
     #
-    print("Loading CSV at '" . FOOD_TRUCK_URL . "' ...\n");
+    print "Loading CSV at '" . FOOD_TRUCK_URL . "' ...\n";
     my $response = HTTP::Tiny->new->get(FOOD_TRUCK_URL);
     die "SF food truck URL GET '" . FOOD_TRUCK_URL . "' failed\n" unless $response->{success};
 
-    print("... parsing ...\n");
+    print "... parsing ...\n";
     my $content = $response->{content};
     my $truck_csv = csv(in => \$content)
         or die "CSV parse failed.";
@@ -39,7 +39,7 @@ sub load_csv {
         s/[\0-\037]// for @$_;
     }
 
-    print("... creating database '" . TRUCK_DB_FILE . "' ...\n");
+    print "... creating database '" . TRUCK_DB_FILE . "' ...\n";
     #
     # Connect to (and create if necessary) the SQLite file.
     #
@@ -82,13 +82,13 @@ sub load_csv {
         $insert_sth->execute($row_id++, @$_);
     }
     $dbh->commit;
-    print("... done.\n");
+    print "... done.\n";
     return $dbh;
 }
 
 sub calc_bearings_and_distances {
     my $dbh = shift;
-    warn("Now, be patient for a few seconds: Computing bearings and distances ...\n");
+    print "Now, be patient for a few seconds: Computing bearings and distances ...\n";
     #
     # Brute force what's basically a cross join for each pair of locations.
     # This SQLite doesn't have math extensions, but we need more than sqrt anyway.
