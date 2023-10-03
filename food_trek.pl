@@ -11,6 +11,7 @@ use HTTP::Tiny;
 use DBI;
 use Text::CSV qw(csv);
 use Geo::Calc;
+use Term::ProgressBar;
 
 #
 # Completely ignoring the possibility of Unicode
@@ -89,6 +90,7 @@ sub load_csv {
 sub calc_bearings_and_distances {
     my $dbh = shift;
     print "Now, be patient for a few seconds: Computing bearings and distances ...\n";
+
     #
     # Brute force what's basically a cross join for each pair of locations.
     # This SQLite doesn't have math extensions, but we need more than sqrt anyway.
@@ -103,6 +105,7 @@ sub calc_bearings_and_distances {
         AND 0 + longitude <> 0
         ORDER BY 0 + row_id
     ));
+    my $progress = Term::ProgressBar->new(scalar @$lat_long);
     $dbh->begin_work;
     $dbh->do('DROP TABLE IF EXISTS dist_bearing');
     $dbh->do(q(
@@ -118,6 +121,7 @@ sub calc_bearings_and_distances {
         INSERT INTO dist_bearing (id_1, id_2, distance, bearing)
         VALUES (?, ?, ?, ?)
     ));
+    my $i = 1;
     for my $l1 (@$lat_long) {
         my ($id_1, $lat_1, $lon_1) = @$l1;
         my $geo = Geo::Calc->new({ lat => $lat_1, lon => $lon_1 });
@@ -128,6 +132,8 @@ sub calc_bearings_and_distances {
             my $bearing = $geo->bearing_to({ lat => $lat_2, lon => $lon_2});
             $insert_sth->execute($id_1, $id_2, $dist, $bearing);
         }
+        $progress->update($i);
+        $i++;
     }
     $dbh->commit;
     print "...done.\n";
