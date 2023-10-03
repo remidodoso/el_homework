@@ -1,3 +1,9 @@
+Pre-notes
+
+It looks like Montyhaul main (https://github.com/remidodoso/montyhaul) is working
+somewhat at the moment. If you grab a copy and open main.html with your browser, it'll 
+somewhat work. The code might be somewhat interesting. Somewhat?
+
 NOTES
 
 To run this you will need to install a few modules, one of which has an annoying nunber
